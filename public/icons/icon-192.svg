@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" rx="32" fill="#0a0a0c"/>
+  <!-- Voter Red circle — Hanko seal motif -->
+  <circle cx="96" cy="96" r="72" fill="none" stroke="#E63946" stroke-width="6"/>
+  <circle cx="96" cy="96" r="60" fill="#E63946" opacity="0.12"/>
+  <!-- Bold "V" letterform -->
+  <text x="96" y="118" font-family="Georgia, serif" font-size="72" font-weight="bold"
+        fill="#E63946" text-anchor="middle" dominant-baseline="auto">V</text>
+  <!-- Thin ring detail -->
+  <circle cx="96" cy="96" r="80" fill="none" stroke="#E63946" stroke-width="1.5" opacity="0.4"/>
+</svg>

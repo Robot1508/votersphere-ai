@@ -1,0 +1,58 @@
+{
+  "name": "VoterSphere — Maharashtra 2026",
+  "short_name": "VoterSphere",
+  "description": "Civic education platform for the Maharashtra 2026 bye-elections. Explore the voter journey, simulate the EVM, and ask Neta-GPT your constitutional questions.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0c",
+  "theme_color": "#E63946",
+  "categories": ["education", "government", "utilities"],
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "VoterSphere Dashboard"
+    },
+    {
+      "src": "/icons/screenshot-narrow.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "EVM Simulator on mobile"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "EVM Simulator",
+      "short_name": "EVM",
+      "description": "Try the M3 EVM replica",
+      "url": "/evm",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Voter Journey",
+      "short_name": "Journey",
+      "description": "Explore the 3D voter journey",
+      "url": "/journey",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
