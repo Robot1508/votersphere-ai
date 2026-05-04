@@ -26,14 +26,54 @@ const ART_326: Article = {
   fullText: "Article 326. The elections to the House of the People and to the Legislative Assembly of every State shall be on the basis of adult suffrage; that is to say, every person who is a citizen of India and who is not less than eighteen years of age on such date as may be fixed in that behalf by or under any law made by the appropriate Legislature and is not otherwise disqualified under this Constitution or any law made by the appropriate Legislature on the ground of non-residence, unsoundness of mind, crime or corrupt or illegal practice, shall be entitled to be registered as a voter at any such election."
 };
 
+const ART_171: Article = {
+  id: "Art. 171",
+  title: "Composition of the Legislative Councils",
+  excerpt: "Defines the composition of the Legislative Council of a State, including members elected by local bodies, graduates, teachers, and those nominated by the Governor.",
+  fullText: "Article 171. (1) The total number of members in the Legislative Council of a State having such a Council shall not exceed one-third of the total number of members in the Legislative Assembly of that State...\n\n(3) Of the total number of members of the Legislative Council of a State—\n(a) as nearly as may be, one-third shall be elected by electorates consisting of members of municipalities, district boards and such other local authorities in the State as Parliament may by law specify;\n(b) as nearly as may be, one-twelfth shall be elected by electorates consisting of persons residing in the State who have been for at least three years graduates of any university in the territory of India..."
+};
+
+const RPA_1951: Article = {
+  id: "RPA 1951",
+  title: "Representation of the People Act, 1951",
+  excerpt: "The primary law governing the conduct of elections, disqualifications, and corrupt practices in India.",
+  fullText: "Representation of the People Act, 1951.\nSection 8: Deals with disqualification of representatives on conviction for certain offences.\nSection 61A: Provides legal sanction for the use of Electronic Voting Machines (EVMs).\nSection 123: Defines 'corrupt practices' such as bribery, undue influence, and appeals to religious symbols."
+};
+
+const ECI_MCC: Article = {
+  id: "ECI MCC",
+  title: "Model Code of Conduct",
+  excerpt: "A set of guidelines issued by the ECI to regulate the conduct of political parties and candidates during elections.",
+  fullText: "Model Code of Conduct (MCC).\n1. General Conduct: Parties/candidates shall not indulge in any activity that aggravates existing differences or creates mutual hatred.\n2. Meetings/Processions: Prior permission must be obtained from local police.\n3. Party in Power: Ministers shall not combine official visits with electioneering work or use government machinery for party interests."
+};
+
+const ART_51A: Article = {
+  id: "Art. 51A(b)",
+  title: "Fundamental Duties - Noble Ideals",
+  excerpt: "It shall be the duty of every citizen of India to cherish and follow the noble ideals which inspired our national struggle for freedom.",
+  fullText: "Article 51A. Fundamental duties.—It shall be the duty of every citizen of India—\n(a) to abide by the Constitution and respect its ideals and institutions, the National Flag and the National Anthem;\n(b) to cherish and follow the noble ideals which inspired our national struggle for freedom;\n(j) to strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavour and achievement."
+};
+
+const ELECT_RULES_1961: Article = {
+  id: "Election Rules 1961",
+  title: "Conduct of Election Rules, 1961",
+  excerpt: "Comprehensive rules governing the conduct of elections, including the use of EVMs and VVPATs.",
+  fullText: "Conduct of Election Rules, 1961.\nRule 49A: Design of Electronic Voting Machines.\nRule 49M: Maintenance of secrecy of voting by electors within polling station and voting procedure.\nRule 56D: Scrutiny of paper trail (VVPAT slips) in certain cases."
+};
+
 const constitutionDB: Record<string, Article[]> = {
   vote:      [ART_326, { id: "Art. 325", title: "No Religious Disqualification", excerpt: "No person shall be ineligible for inclusion in any electoral roll on grounds only of religion, race, caste or sex." }],
-  evm:       [ART_324, { id: "Sec. 61A RPA", title: "EVM Authorisation", excerpt: "Section 61A of the Representation of the People Act, 1951 empowers the ECI to use voting machines in any or all constituencies." }],
-  election:  [ART_324, ART_326, { id: "Art. 327", title: "Parliament's Power", excerpt: "Parliament may by law make provision with respect to all matters relating to, or in connection with, elections to either House of Parliament." }],
-  candidate: [{ id: "Art. 84", title: "Parliament Qualification", excerpt: "Candidate for Lok Sabha must be ≥25 yrs; Rajya Sabha ≥30 yrs; citizen of India; not holding office of profit." }, { id: "Art. 173", title: "State Legislature", excerpt: "Candidate for State Legislature must be a citizen of India with the requisite age." }],
+  evm:       [ART_324, { id: "Sec. 61A RPA", title: "EVM Authorisation", excerpt: "Section 61A of the Representation of the People Act, 1951 empowers the ECI to use voting machines in any or all constituencies." }, RPA_1951, ELECT_RULES_1961],
+  election:  [ART_324, ART_326, { id: "Art. 327", title: "Parliament's Power", excerpt: "Parliament may by law make provision with respect to all matters relating to, or in connection with, elections to either House of Parliament." }, RPA_1951, ELECT_RULES_1961],
+  candidate: [{ id: "Art. 84", title: "Parliament Qualification", excerpt: "Candidate for Lok Sabha must be ≥25 yrs; Rajya Sabha ≥30 yrs; citizen of India; not holding office of profit." }, { id: "Art. 173", title: "State Legislature", excerpt: "Candidate for State Legislature must be a citizen of India with the requisite age." }, RPA_1951, ECI_MCC],
+  structure: [{ id: "Art. 168", title: "Constitution of Legislatures", excerpt: "For every State, there shall be a Legislature which shall consist of the Governor and two Houses (in certain states including Maharashtra)." }, ART_171],
+  rights:    [{ id: "Art. 19", title: "Protection of Rights", excerpt: "All citizens shall have the right to freedom of speech and expression, to assemble peaceably, and to form associations." }, { id: "Art. 21", title: "Protection of Life", excerpt: "No person shall be deprived of his life or personal liberty except according to procedure established by law." }],
+  duty:      [ART_51A],
   nota:      [{ id: "Art. 19(1)(a)", title: "Freedom of Expression", excerpt: "NOTA upheld as an expression of the right to speech — PUCL v. Union of India (2013). A NOTA vote is counted but does not confer victory." }],
-  vvpat:     [ART_324, { id: "ECI Circular 2019", title: "VVPAT Mandate", excerpt: "The ECI mandates VVPAT units nationwide since 2019. Slips are visible for exactly 7 seconds before dropping into a sealed ballot box." }],
-  default:   [ART_324],
+  vvpat:     [ART_324, { id: "ECI Circular 2019", title: "VVPAT Mandate", excerpt: "The ECI mandates VVPAT units nationwide since 2019. Slips are visible for exactly 7 seconds before dropping into a sealed ballot box." }, ELECT_RULES_1961],
+  conduct:   [ECI_MCC, RPA_1951, ELECT_RULES_1961],
+  disqualification: [RPA_1951],
+  default:   [ART_324, ART_326, ART_51A],
 };
 
 // Exported for unit tests — must have >= 5 distinct entries (Req 11.2)
@@ -168,23 +208,80 @@ export function NetaGPT() {
   const handleSend = async (text?: string) => {
     const q = (text ?? input).trim();
     if (!q || loading) return;
+
     const userMsg: Message = { id: Date.now().toString(), role: "user", text: q };
     setMessages((p) => [...p, userMsg]);
     setInput("");
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    
-    // Simple response mapping for demo
-    let reply = "I can help with that. Article 324 is particularly relevant here.";
-    let articles = [ART_324];
-    
-    if (q.toLowerCase().includes("vote") || q.toLowerCase().includes("326")) {
-      reply = "The right to vote is established under Article 326. It ensures adult suffrage for all citizens over 18.";
-      articles = [ART_326];
+
+    try {
+      const storedUser = localStorage.getItem("votersphere_user");
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          message: q,
+          userId: storedUser || "guest",
+          history: messages.map(m => ({
+            role: m.role === "user" ? "user" : "model",
+            parts: [{ text: m.text }]
+          }))
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to reach Neta-GPT");
+
+      const data = await response.json();
+      const replyText = data.text;
+
+      // Auto-detect citations in the reply to populate the citations bar
+      const detectedArticles: Article[] = [];
+      const seenIds = new Set<string>();
+
+      // Check for direct Article mentions
+      Object.values(constitutionDB).flat().forEach(art => {
+        if (replyText.includes(art.id) && !seenIds.has(art.id)) {
+          detectedArticles.push(art);
+          seenIds.add(art.id);
+        }
+      });
+
+      // Also fallback to keyword matching if no specific articles found
+      if (detectedArticles.length === 0) {
+        for (const [key, arts] of Object.entries(constitutionDB)) {
+          if (replyText.toLowerCase().includes(key) || q.toLowerCase().includes(key)) {
+            arts.forEach(a => {
+              if (!seenIds.has(a.id)) {
+                detectedArticles.push(a);
+                seenIds.add(a.id);
+              }
+            });
+          }
+        }
+      }
+
+      setMessages((p) => [
+        ...p,
+        {
+          id: (Date.now() + 1).toString(),
+          role: "assistant",
+          text: replyText,
+          articles: detectedArticles.length > 0 ? detectedArticles : [ART_324],
+        },
+      ]);
+    } catch (err) {
+      console.error(err);
+      setMessages((p) => [
+        ...p,
+        {
+          id: (Date.now() + 1).toString(),
+          role: "assistant",
+          text: "Forgive me, but I'm having trouble accessing my constitutional records at the moment. Please try again shortly.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
     }
-    
-    setMessages((p) => [...p, { id: (Date.now() + 1).toString(), role: "assistant", text: reply, articles }]);
-    setLoading(false);
   };
 
   return (
@@ -273,7 +370,27 @@ export function NetaGPT() {
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs leading-relaxed ${msg.role === "user" ? "bg-[#E63946] text-white shadow-lg" : "bg-white/5 text-white/80 border border-white/10"}`}>
-                    {msg.text}
+                    {msg.text.split("\n").map((line, i) => {
+                      // Process bold text **text**
+                      const parts = line.split(/(\*\*.*?\*\*)/g);
+                      return (
+                        <p key={i} className={i > 0 ? "mt-2" : ""}>
+                          {parts.map((part, j) => {
+                            if (part.startsWith("**") && part.endsWith("**")) {
+                              const content = part.slice(2, -2);
+                              // Highlight headers specifically
+                              const isHeader = ["Legal Basis:", "Simplified Explanation:", "2026 Action Item:"].includes(content);
+                              return (
+                                <strong key={j} className={isHeader ? "text-red-400 block mb-1 uppercase tracking-wider font-black" : "text-white font-bold"}>
+                                  {content}
+                                </strong>
+                              );
+                            }
+                            return part;
+                          })}
+                        </p>
+                      );
+                    })}
                   </div>
                 </div>
               ))}

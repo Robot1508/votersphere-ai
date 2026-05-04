@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, LogIn, ChevronDown } from "lucide-react";
+import { User, LogIn, ChevronDown, LogOut } from "lucide-react";
+import { SignIn } from "./SignIn";
 
 const navLinks = [
   { href: "/dashboard", label: "Dashboard" },
@@ -14,18 +15,33 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [showSignIn, setShowSignIn] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const pathname = usePathname();
 
-  const handleSignIn = () => {
-    // Mock login — toggle state
-    setIsLoggedIn(true);
-  };
+  // Sync with localStorage
+  useState(() => {
+    if (typeof window !== "undefined") {
+      setUserId(localStorage.getItem("votersphere_user"));
+    }
+  });
 
   const handleSignOut = () => {
-    setIsLoggedIn(false);
+    localStorage.removeItem("votersphere_user");
+    setUserId(null);
     setShowUserMenu(false);
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  const getProfileLabel = (id: string) => {
+    const labels: Record<string, string> = {
+      robot1508: "Developer",
+      voter_newbie: "Newbie Voter",
+      official_test: "Election Official",
+      voter_senior: "Senior Citizen"
+    };
+    return labels[id] || "User";
   };
 
   return (
@@ -85,11 +101,11 @@ export function Navbar() {
 
           {/* Sign In / User avatar */}
           <AnimatePresence mode="wait">
-            {!isLoggedIn ? (
+            {!userId ? (
               <motion.button
                 key="sign-in"
                 id="sign-in-btn"
-                onClick={handleSignIn}
+                onClick={() => setShowSignIn(true)}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
@@ -109,12 +125,12 @@ export function Navbar() {
                 <button
                   id="user-avatar-btn"
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E63946]/15 border border-[#E63946]/40 text-white text-xs font-semibold hover:bg-[#E63946]/25 transition-all"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E63946]/15 border border-[#E63946]/40 text-white text-[11px] font-bold hover:bg-[#E63946]/25 transition-all"
                 >
                   <div className="w-6 h-6 rounded-full bg-[#E63946] flex items-center justify-center">
                     <User className="w-3.5 h-3.5 text-white" />
                   </div>
-                  Arya
+                  <span className="max-w-[80px] truncate">{getProfileLabel(userId)}</span>
                   <ChevronDown className={`w-3 h-3 text-white/50 transition-transform ${showUserMenu ? "rotate-180" : ""}`} />
                 </button>
 
@@ -128,23 +144,25 @@ export function Navbar() {
                       transition={{ duration: 0.15 }}
                       className="absolute right-0 mt-2 w-44 bg-[#12121a] border border-white/10 rounded-xl shadow-2xl overflow-hidden"
                     >
-                      <div className="px-4 py-3 border-b border-white/10">
-                        <div className="text-white text-sm font-semibold">Arya</div>
-                        <div className="text-white/30 text-xs">arya@example.in</div>
+                      <div className="px-4 py-3 border-b border-white/10 bg-white/2">
+                        <div className="text-white text-xs font-bold truncate">{getProfileLabel(userId)}</div>
+                        <div className="text-white/30 text-[10px] mt-0.5 truncate">{userId}</div>
                       </div>
                       <div className="p-1.5">
                         <Link
                           href="/badges"
                           onClick={() => setShowUserMenu(false)}
-                          className="block px-3 py-2 rounded-lg text-white/60 text-xs hover:bg-white/8 hover:text-white transition-colors"
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg text-white/60 text-xs hover:bg-white/8 hover:text-white transition-colors"
                         >
-                          My Badges
+                          <User className="w-3.5 h-3.5" />
+                          My Profile
                         </Link>
                         <button
                           id="sign-out-btn"
                           onClick={handleSignOut}
-                          className="w-full text-left px-3 py-2 rounded-lg text-red-400 text-xs hover:bg-red-500/10 transition-colors"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-red-400 text-xs hover:bg-red-500/10 transition-colors"
                         >
+                          <LogOut className="w-3.5 h-3.5" />
                           Sign Out
                         </button>
                       </div>
@@ -156,6 +174,10 @@ export function Navbar() {
           </AnimatePresence>
         </div>
       </div>
+      <SignIn isOpen={showSignIn} onClose={() => {
+        setShowSignIn(false);
+        setUserId(localStorage.getItem("votersphere_user"));
+      }} />
     </nav>
   );
 }
